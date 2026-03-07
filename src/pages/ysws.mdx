@@ -7,6 +7,10 @@ import Emoji from '../components/emoji.astro';
 import { Image } from 'astro:assets';
 import FooterNavigation from "../components/footerNavigation.astro";
 
+import flavortown3dPrinter from "../assets/images/flavortown-bambu-lab-a1.png"
+import flavortownLaptop from "../assets/images/flavortown-framework-12.png"
+import flavortownHotFudge from "../assets/images/flavortown-hot-fudge.png"
+
 The main thing in Hack Club are **You Ship, We ship (YSWS) programs**. 
 In YSWS events, you maintain total ownership over the projects you submit. 
 Time that was accrewed in Hackatime before a YSWS started also cannot be submitted.
@@ -21,10 +25,17 @@ The idea is to get hours of practice in by building and debugging.
 
 Deven wrote a short blog post about how Hack Club approaches YSWS and how it determines funding titled [The plan for hack club world dominance](https://notes.deven.dev/posts/the-plan-for-hack-club-world-dominance) if you're interested and want to read it.
 
-
 ## YSWS
  YSWS programs come in all shapes and sizes. Some are short term (1-3 months). Some have no ending date (like [Boba](https://boba.hackclub.com/)!). Some only accept projects around a theme *(like the [Woof](https://woof.hackclub.com/)  YSWS that ended that only accepted dog themed projects)* but others accept any project no matter the theme like [Flavortown](https://flavortown.hackclub.com/)! 
- But they all give out prizes for the hours spent making a project around a given theme. You can nab yourself a 3d printer or credits for cloud providers or a Framework 16 laptop! 
+ But they all give out prizes for the hours spent making a project around a given theme. You can nab yourself a 3d printer or a Framework 12 laptop or hot fudge from the country store next to Hack Club HQ.
+
+<div class="flex gap-2">
+    <img src={flavortown3dPrinter.src}/>
+    <img src={flavortownLaptop.src}/>
+    <img src={flavortownHotFudge.src}/>
+</div>
+<p class="text-small text-gray-600">Prizes from Flavortown</p>
+
  Some programs give out **grants** instead of physical prizes. For physical prizes: If you're outside of the United States, additional fees for customs/imports may apply. :(
 
 - [:What's a grant?](/readme/nutshells#whats-a-grant)
