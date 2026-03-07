@@ -12,5 +12,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  base: '/',
+  site: 'https://eofreternal.github.io',
+  base: '/readme/',
 });
