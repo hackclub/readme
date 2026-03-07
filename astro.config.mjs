@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import tailwindcss from "@tailwindcss/vite";
 
 import mdx from '@astrojs/mdx';
 
@@ -7,6 +8,9 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   integrations: [mdx()],
 
-  site: 'https://hex-4.github.io',
-  base: '/readme/',
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
+  base: '/',
 });

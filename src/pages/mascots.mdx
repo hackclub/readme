@@ -1,0 +1,73 @@
+---
+layout: ../layouts/page.astro
+title: "Mascots and LOREEEE"
+---
+
+import Emoji from '../components/emoji.astro';
+import { Image } from 'astro:assets';
+import FooterNavigation from "../components/footerNavigation.astro";
+
+import orpheusHeidiSippingHotChocolate from "../assets/images/orpheus_heidi.png"
+import largeOrpheus from "../assets/images/large_orpheus.png"
+import heidi from "../assets/images/heidi.png"
+import dinobox from "../assets/images/dinobox.png"
+
+<div class="flex flex-col gap-8">
+    <div class="flex gap-4">
+        <img class="w-md! border-0!" src={largeOrpheus.src}/>
+        <div class="flex flex-col justify-start">
+            <h1>Orpheus (Or-fee-us)</h1>
+            <p>
+                Rawr! Who is this nondescript, female dinosuar? It's Orpheus! 
+                
+                Drawn in black and white, Orpheus popped into existance when Zach signed the registration papers for Hack Club. She's been stealing food and going on whacky adventures ever since.
+
+                Read more about Orpheus [here](https://workshops.hackclub.com/orpheus/)!
+            </p>
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <img class="w-md! border-0!" src={heidi.src}/>
+        <div class="flex flex-col justify-start">
+            <h1>Heidi (H-eye-di)</h1>
+            <p>
+                A raccoon drinking hot chocolate? Who does that? Heidi does! 
+                Heidi was dreamt up by Chris Walker in 2024. She's silly racoon that likes to go on adventures with her girlfriend, Orpheus.
+            </p>
+        </div>
+    </div>  
+
+    <div class="flex gap-4">
+        <img class="w-md! border-0!" src={dinobox.src}/>
+        <div class="flex flex-col justify-start">
+            <h1>Dinobox (Die-no-box)</h1>
+            <p>
+                A dinosaur with a box on their head sits in the corner, munching on something. Who is it and what are they chewing?
+                Its Dinobox! And they're chewing on mailing labels! Yummy snack :P
+
+                Dinobox is a dinosuar (possibly the same species as Orpheus but nobody knows) of unknown gender. Dinobox handles all the mail for Hack Club. 
+                Don't forget to say "thank you" to Dinobox when you receive your Hack Club stickers.
+            </p>
+        </div>
+    </div>  
+</div>
+
+# LOREEEEE
+<img src={orpheusHeidiSippingHotChocolate.src} alt="Orpheus and Heidi sipping hot chocolate" class="w-full"/>
+
+Orpheus and Heidi are *dating*!!!
+Link to a meme someone made when the poll was created to see if Orpheus should ask Heidi out: https://hackclub.enterprise.slack.com/files/U09H9PLB6E7/F07A1FWTNGM/the_people_have_spoken_max.pdf
+
+Orpheus and Heidi lore is fanfic-like. That is to say: disjointed with general facts that are agreed on but with multiple branching storylines.
+There's some stories written by Chris Walker on essays.hackclub.com and even more on Slack (include more information)
+
+The lore is very scattered. (future-me will have to dig to find who started it and how it started and what the agreed-upon facts are)
+There's something about Jeremy compiling the lore and them Chris Walker writing some stories about Orpheus and Heidi loosely related to his real-world experiences or some sort.
+I don't know.
+
+Several stories on https://essays.hackclub.com/
+
+Canvas with character descriptions: https://hackclub.enterprise.slack.com/docs/T0266FRGM/F07G3NBJFJQ
+
+<FooterNavigation backlink="/activities" backtitle="Activities with SAD people" forwardlink="/clubs" forwardtitle="Clubs"></FooterNavigation>

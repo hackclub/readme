@@ -1,0 +1,5 @@
+The Slack workspace has separate channels dedicated to different projects or topics.
+Here are some helpful resources for Slack if you're new! :D
+- <a href="https://hackclub.enterprise.slack.com/docs/T0266FRGM/F07QCJ61T32" target="_blank" rel="noopener">How to use Slack</a>
+- <a href="https://hackclub.enterprise.slack.com/docs/T0266FRGM/F07PJCQ2ZN0" target="_blank" rel="noopener">Some cool channels</a>
+- <a href="https://hackclub.enterprise.slack.com/docs/T0266FRGM/F0ACXBD5P17" target="_blank" rel="noopener">Ongoing events</a>
