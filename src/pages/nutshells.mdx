@@ -4,6 +4,7 @@ title: "nutshells"
 ---
 
 import Emoji from '../components/emoji.astro';
+import { Prism } from '@astrojs/prism';
 
 import messageHover from "../assets/images/how-do-i-start-a-thread/messageHover.png"
 
@@ -11,6 +12,8 @@ import reply1 from "../assets/images/reply/reply-1.png"
 import reply2 from "../assets/images/reply/reply-2.png"
 import reply3 from "../assets/images/reply/reply-3.png"
 import reply4 from "../assets/images/reply/reply-4.png"
+
+import gitWindow from "../assets/images/git.png"
 
 hi!! this is an internal page that contains the content of the Nutshells that we link to throughout README. feel free to read through them here!
 
@@ -144,14 +147,33 @@ And then paste it and start typing your message
 It will show up in the chat like this:
 <img src={reply4.src}/>
 
+## : make github account
+Create your GitHub account by visiting https://github.com/signup
+
+## : download git
+If you're on Linux, I trust you know how to Google.
+
+If you're on Mac, install [Homebrew](https://brew.sh/) and then run
+
+<Prism lang="shell" code={`brew install wget`} />
+
+If you're on Windows, visit https://git-scm.com/install/windows and click the "Click here to download" text to download the installer.
+
+## : set up git
+Open a Terminal (or the cmd if you're on Windows) and run <Prism code={`git credential-manager github login`} lang="shell"/>
+
+it might look like it's not doing anything for 10 seconds but just wait. It will open a small window that looks like this:
+
+<img src={gitWindow.src}/>
+
 ## : ysws-wait-im-a-beginner
 Git and GitHub are used to track code changes (sometimes called "version control"). GitHub is where the code and information about code changes (called commits) are stored. Git is the tool that tracks the code changes and sends the changes to GitHub. They both have "git" in their name but they are different.
 
-# Make a github account
+Lets get you set up with GitHub and Git
+- [:Make your GitHub account](/readme/nutshells#make-github-account)
+- [:Download git](/readme/nutshells#download-git)
 
-# Download git (instructions for linux, winodw,s and mac)
-
-# Basic git commands
+- Basic git commands
 git commit -m
 git push
 git pull
@@ -161,7 +183,7 @@ git status
 git stash
 git stash pop
 
-# Committing
+- Committing
 You should commit your code every so often so that your changes are tracked and you can see the evolution of your codebase.
 The standard convention for committing is one commit after every change. For example: if you were fixing typo's in your site, you'd commit after you fixed all the typo's in your website and commit all the changes at once in one commit. You wouldn't commit once after every typo fix. I mean, you could but thats not "standard". There's nothing stopping you if you want to commit after every fixed typo, though.
 
