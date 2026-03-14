@@ -2,6 +2,7 @@
 const { frontmatter } = Astro.props;
 import Navbar from "../components/navbar.astro";
 import "../global.css";
+import nutshellUrl from "../assets/nutshell.js?url";
 ---
 
 <!doctype html>
@@ -21,6 +22,4 @@ import "../global.css";
 </html>
 
 <!-- Custom nutshell.js with the 'remove css classes' thing applied. Cus I need codeblocks from Prism -->
-<script>
-  import "../assets/nutshell.js";
-</script>
+<script is:inline src={nutshellUrl}></script>
