@@ -13,7 +13,7 @@
     "@astrojs/prism": "^4.0.0",
     "@astrojs/vercel": "^10.0.4",
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "5.18.1",
+    "astro": "6.1.6",
     "tailwindcss": "^4.1.18"
   }
 }
