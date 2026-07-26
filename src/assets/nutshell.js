@@ -681,8 +681,7 @@ Bubble: the box that expands below an expandable, containing a Nutshell Section
             ex.parentNode.insertBefore(followupSpan, punctuation.nextSibling); // add right after punctuation
 
             // Short or long followup TEXT?
-            let shortFollowupHTML = '...', // just dots
-                longFollowupHTML = '';
+            let lastSentenceText = '';
             if(hasWordsAfterExpandable){
 
                 // Get last sentence...
@@ -693,10 +692,7 @@ Bubble: the box that expands below an expandable, containing a Nutshell Section
                 // Get immediately previous sentence
                 let textBeforeThinkLink = tmpSpan.innerText,
                     sentencesBeforeThisLink = textBeforeThinkLink.split(Nutshell.getLocalizedText('endPunctuation')),
-                    lastSentenceHTML = sentencesBeforeThisLink[sentencesBeforeThisLink.length-1];
-
-                // Follow up with prev sentence, then expandable text in bold, then punctuation
-                longFollowupHTML = lastSentenceHTML + '<b>' + ex.innerHTML + '</b>' + punctuation.innerHTML;
+                    lastSentenceText = sentencesBeforeThisLink[sentencesBeforeThisLink.length-1];
 
             }
             // Method needs to be publicly accessible, I guess
@@ -708,7 +704,13 @@ Bubble: the box that expands below an expandable, containing a Nutshell Section
                     // if open, show only if bubble's textContent is above 50 words
                     let longEnough = (bubble.textContent.trim().split(" ").length>=50);
                     followupSpan.style.display = 'inline';
-                    followupSpan.innerHTML = longEnough ? longFollowupHTML : shortFollowupHTML;
+                    if(longEnough){
+                        let boldLinkText = document.createElement('b');
+                        boldLinkText.textContent = ex.textContent;
+                        followupSpan.replaceChildren(lastSentenceText, boldLinkText, punctuation.textContent);
+                    }else{
+                        followupSpan.textContent = '...';
+                    }
                 }
             };
 
@@ -967,12 +969,14 @@ Bubble: the box that expands below an expandable, containing a Nutshell Section
                 // and other URL params like time.
                 url = new URL(url);
                 let videoID, t;
-                if( url.host.indexOf("youtube.com") >= 0 ){
+                if(_hostnameMatches(url.hostname, "youtube.com")){
                     videoID = url.searchParams.get('v');
-                }else if( url.host.indexOf("youtu.be") >= 0 ){
+                }else if(url.hostname === "youtu.be"){
                     videoID = url.pathname.slice(1);
                 }
                 t = parseInt( url.searchParams.get("t") || url.searchParams.get("start") || '0' );
+                videoID = encodeURIComponent(videoID || '');
+                t = Number.isFinite(t) && t >= 0 ? t : 0;
 
                 // Gimme, easy peasy.
                 // weird css hack to make the iframe scale aspect-ratio.
@@ -1110,14 +1114,17 @@ Bubble: the box that expands below an expandable, containing a Nutshell Section
 
     // Is it Wikipedia?
     let _isWikipedia = (url)=>{
-        return url.indexOf('wikipedia.org')>=0;
+        return _hostnameMatches(new URL(url).hostname, 'wikipedia.org');
     };
 
     // Is it YouTube?
     let _isYouTube = (url)=>{
-        if(url.indexOf('youtu.be')>=0) return true;
-        if(url.indexOf('youtube.com')>=0) return true;
-        return false;
+        let hostname = new URL(url).hostname;
+        return hostname === 'youtu.be' || _hostnameMatches(hostname, 'youtube.com');
+    };
+
+    let _hostnameMatches = (hostname, domain)=>{
+        return hostname === domain || hostname.endsWith('.' + domain);
     };
 
     // Convert key-values to key1=value1&key2=value2 etc. Also encode URI
@@ -1397,13 +1404,18 @@ Bubble: the box that expands below an expandable, containing a Nutshell Section
                 }
 
                 // Now deliver the promised container, containing the section!
-                container.innerHTML = _addSource(url) + containerHTML;
+                container.innerHTML = DOMPurify.sanitize(_addSource(url) + containerHTML, {
+                    ADD_TAGS: ['iframe','audio','video']
+                });
+                [...container.querySelectorAll('iframe')].forEach(iframe=>{
+                    iframe.setAttribute('sandbox','allow-scripts');
+                });
                 resolve(container);
 
             }).catch((message)=>{
 
                 // IF SOMETHING ALONG THIS ENTIRE PROCESS WENT WRONG, TELL USER.
-                container.innerHTML = message;
+                container.innerHTML = DOMPurify.sanitize(message);
                 resolve(container);
 
             });
@@ -1874,8 +1886,12 @@ Bubble: the box that expands below an expandable, containing a Nutshell Section
         setTimeout(()=>{ _e.setAttribute("mode","shown"); },1);
 
         // Reset Step 0's Example
-        _p0.innerHTML = Nutshell.getLocalizedText("embedStep0")
-            .replace(`[EXAMPLE]`,`<a href='${url}' style='font-weight:bold'>:${linkText}</a>`);
+        let embedStep0Parts = Nutshell.getLocalizedText("embedStep0").split('[EXAMPLE]'),
+            exampleLink = document.createElement('a');
+        exampleLink.href = url;
+        exampleLink.style.fontWeight = 'bold';
+        exampleLink.textContent = ':' + linkText;
+        _p0.replaceChildren(embedStep0Parts[0], exampleLink, embedStep0Parts.slice(1).join('[EXAMPLE]'));
         Nutshell.convertLinksToExpandables(_p0);
 
         // Update Step 2's link URL
