@@ -3,6 +3,39 @@ const { frontmatter } = Astro.props;
 import Navbar from "../components/navbar.astro";
 import "../global.css";
 import nutshellUrl from "../assets/nutshell.js?url";
+import { ORGANIZATION_SCHEMA, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../lib/site";
+
+const title = frontmatter?.title ?? SITE_NAME;
+const description = frontmatter?.description ?? SITE_DESCRIPTION;
+const canonical = new URL(Astro.url.pathname.replace(/(.)\/$/, "$1"), SITE_URL).href;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    ORGANIZATION_SCHEMA,
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: `${SITE_NAME} // Hack Club`,
+      alternateName: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      url: `${SITE_URL}/`,
+      inLanguage: "en",
+      publisher: { "@id": ORGANIZATION_SCHEMA["@id"] },
+      about: { "@id": ORGANIZATION_SCHEMA["@id"] },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      name: title,
+      description,
+      url: canonical,
+      inLanguage: "en",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": ORGANIZATION_SCHEMA["@id"] },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -15,7 +48,20 @@ import nutshellUrl from "../assets/nutshell.js?url";
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>README // {frontmatter.title}</title>
+    <title>README // {title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/markdown" href={canonical} title={`${title} (Markdown)`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${SITE_NAME} // Hack Club`} />
+    <meta property="og:title" content={`README // ${title}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(structuredData)}
+    />
   </head>
   <body>
     <a href="https://hackclub.com/"
@@ -27,7 +73,7 @@ import nutshellUrl from "../assets/nutshell.js?url";
     >
     <Navbar />
     <main>
-      <h1>{frontmatter.title}</h1>
+      <h1>{title}</h1>
       <slot />
     </main>
   </body>

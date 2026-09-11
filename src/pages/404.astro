@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/page.astro";
+import { PAGES } from "../lib/pages";
+import { absoluteUrl } from "../lib/site";
+
+const frontmatter = {
+  title: "404 - Page not found",
+  description:
+    "That page does not exist on README. Here is every page on the site, plus the machine-readable entry points.",
+};
+
+const machineReadable = [
+  { path: "/llms.txt", label: "index of the whole guide" },
+  { path: "/sitemap.xml", label: "every indexable URL" },
+  { path: "/robots.txt", label: "crawl policy" },
+];
+---
+
+<Layout frontmatter={frontmatter}>
+  <p>
+    There's nothing at <code>{Astro.url.pathname}</code>. Nothing's broken -
+    that address just isn't a page here. Try one of these instead:
+  </p>
+
+  <h2>Every page on this site</h2>
+  <ul>
+    {
+      PAGES.map((page) => (
+        <li>
+          <a href={page.path}>{page.title}</a>
+          {page.description ? ` - ${page.description}` : null}
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Machine-readable entry points</h2>
+  <ul>
+    {
+      machineReadable.map((entry) => (
+        <li>
+          <a href={entry.path}>{absoluteUrl(entry.path)}</a> - {entry.label}
+        </li>
+      ))
+    }
+  </ul>
+
+  <p>
+    Agents: send <code>Accept: text/markdown</code> to any page URL (this one
+    included) to get a Markdown representation instead of HTML.
+  </p>
+</Layout>

@@ -6,7 +6,8 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  site: 'https://readme.hackclub.com',
+  output: 'server',
   adapter: vercel(),
   integrations: [mdx()],
 
