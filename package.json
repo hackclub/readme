@@ -6,12 +6,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "start": "bun ./dist/server/entry.mjs",
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
     "@astrojs/mdx": "7.0.3",
+    "@astrojs/node": "11.1.5",
     "@astrojs/prism": "^4.0.2",
     "@astrojs/vercel": "11.0.10",
     "@tailwindcss/vite": "^4.3.3",

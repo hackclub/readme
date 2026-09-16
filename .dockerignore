@@ -1,0 +1,16 @@
+node_modules
+dist
+.astro
+.vercel
+.vscode
+.idea
+.DS_Store
+.env
+.env.*
+*.log
+coverage
+tests
+vitest.config.ts
+README.md
+Dockerfile
+.dockerignore
