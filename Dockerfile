@@ -4,7 +4,9 @@ WORKDIR /app
 
 ENV ASTRO_TELEMETRY_DISABLED=1
 
-RUN apk add --no-cache git
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends git \
+ && rm -rf /var/lib/apt/lists/*
 
 COPY package.json bun.lock ./
 RUN --mount=type=cache,target=/root/.bun/install/cache \
