@@ -13,11 +13,10 @@ RUN --mount=type=cache,target=/root/.bun/install/cache \
     bun install --frozen-lockfile
 
 COPY . .
-RUN bun run build \
- && bun build ./dist/server/entry.mjs --target bun --minify --outfile /tmp/entry.mjs \
- && rm -rf dist/server \
- && mkdir -p dist/server \
- && mv /tmp/entry.mjs dist/server/entry.mjs
+RUN bun run build
+RUN --mount=type=cache,target=/root/.bun/install/cache \
+    rm -rf node_modules \
+ && bun install --frozen-lockfile --production
 
 FROM dhi.io/bun:1
 WORKDIR /app
@@ -26,6 +25,7 @@ ENV NODE_ENV=production \
     HOST=0.0.0.0 \
     PORT=80
 
+COPY --from=build --chown=65532:65532 /app/node_modules ./node_modules
 COPY --from=build --chown=65532:65532 /app/dist ./dist
 
 USER 65532:65532
