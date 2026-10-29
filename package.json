@@ -12,16 +12,15 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@astrojs/mdx": "7.0.3",
-    "@astrojs/node": "11.1.5",
-    "@astrojs/prism": "^4.0.2",
-    "@astrojs/vercel": "11.0.10",
+    "@astrojs/mdx": "8.1.2",
+    "@astrojs/node": "11.1.9",
+    "@astrojs/prism": "^4.1.2",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^22.20.3",
-    "astro": "7.3.2",
+    "@types/node": "^26.6.6",
+    "astro": "7.4.4",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.5"
   }
 }
