@@ -15,7 +15,7 @@
     "@astrojs/mdx": "8.1.2",
     "@astrojs/node": "11.1.9",
     "@astrojs/prism": "^4.1.2",
-    "@tailwindcss/vite": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.4",
     "@types/node": "^26.6.6",
     "astro": "7.4.4",
     "tailwindcss": "^4.3.3"
