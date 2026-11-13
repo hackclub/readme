@@ -17,7 +17,7 @@
     "@astrojs/prism": "^4.1.2",
     "@tailwindcss/vite": "^4.3.4",
     "@types/node": "^26.6.6",
-    "astro": "7.4.7",
+    "astro": "7.4.8",
     "tailwindcss": "^4.3.4"
   },
   "devDependencies": {
